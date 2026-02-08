@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace TDD.Data.Interfaces
 {
-    internal class IDataExecute
-    {
-    }
+    public interface IDataExecute : IDataRequest { }
 }

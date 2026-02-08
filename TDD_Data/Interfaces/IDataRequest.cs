@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TDD.Data.Interfaces
 {
-    internal class IDataRequest
+    public interface IDataRequest
     {
+        public string GetSql();
+
+        public object? GetParameters();
     }
 }

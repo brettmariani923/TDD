@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace TDD.Data.Interfaces
 {
-    internal class IDataFetchList
-    {
-    }
+    public interface IDataFetchList<TResponse> : IDataRequest { }
 }

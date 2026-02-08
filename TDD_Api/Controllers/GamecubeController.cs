@@ -1,4 +1,6 @@
 ﻿using TDD.Application.Gamecube.Interfaces;
+using TDD.Application.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TDD.Api.Controllers
 {
@@ -10,6 +12,13 @@ namespace TDD.Api.Controllers
         public async Task InsertGame(string name)
         {
             var request = await _gamecube.InsertGameAsync(name);
+            return request;
+        }
+
+        public async Task <ActionResult<IEnumerable<GamecubeGame_DTO>>> GetAllGames()
+        {
+            var request = await _gamecube.GetAllGamesAsync();
+            return request;
         }
     }
 }

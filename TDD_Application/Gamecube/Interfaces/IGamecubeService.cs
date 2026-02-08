@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TDD.Data.Rows;
 
 namespace TDD.Application.Gamecube.Interfaces
 {
     public interface IGamecubeService
     {
+        public Task InsertGameAsync(GamecubeGame_Row name);
+
+        public Task<IEnumerable<GamecubeGame_Row>> GetAllGamesAsync();
 
     }
 }

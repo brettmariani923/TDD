@@ -1,10 +1,11 @@
 ﻿using TDD.Data.Interfaces;
 using TDD.Data.Requests.Gamecube;
 using TDD.Data.Rows;
+using TDD.Application.Gamecube.Interfaces;
 
 namespace TDD.Application.Gamecube.Services
 {
-    public class GamecubeService 
+    public class GamecubeService : IGamecubeService
     {
         private readonly IDataAccess _data;
         public GamecubeService(IDataAccess data) => _data = data;

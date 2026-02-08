@@ -3,6 +3,7 @@
     public class InsertTests
     {
         [Fact]
-        public void Test();
+        public void Test()
+        { }
     }
 }

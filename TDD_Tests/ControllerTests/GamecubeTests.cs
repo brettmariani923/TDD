@@ -1,11 +1,12 @@
 namespace TDD.Tests.ControllerTests
 {
-    public class HomeTests
+    public class GamecubeTests
     {
         [Fact]
-        public void Test1()
+        public void ReturnAllGamecubeGame()
         {
 
+ 
         }
     }
 }

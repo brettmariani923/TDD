@@ -56,10 +56,16 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="DBO" />
+    <Folder Include="DBO\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="N64.sql" />
-    <None Include="Gamecube.sql" />
-    <None Include="SNES.sql" />
+    <None Include="DBO\Tables\GamecubeGames.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DBO\Tables\N64Games.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DBO\Tables\SNESGames.sql" />
   </ItemGroup>
 </Project>

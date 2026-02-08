@@ -2,7 +2,7 @@
 
 namespace TDD.Api.Controllers
 {
-    public class HomeController : Controller
+    public class N64Controller : Controller
     {
         public IActionResult Index()
         {

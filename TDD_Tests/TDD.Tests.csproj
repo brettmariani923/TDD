@@ -27,4 +27,12 @@
     <Folder Include="ServiceTests\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TDD_Api\TDD.Api.csproj" />
+    <ProjectReference Include="..\TDD_Application\TDD.Application.csproj" />
+    <ProjectReference Include="..\TDD_Data\TDD.Data.csproj" />
+    <ProjectReference Include="..\TDD_Domain\TDD.Domain.csproj" />
+    <ProjectReference Include="..\TDD_SqlServerDatabase\TDD.SqlServerDatabase.sqlproj" />
+  </ItemGroup>
+
 </Project>

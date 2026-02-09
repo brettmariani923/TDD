@@ -6,7 +6,7 @@ namespace TDD.Data.Requests.Gamecube
     public class GetAllGamesRequest : IDataFetchList<GamecubeGame_Row>
     {
         public string GetSql() =>
-            @"SELECT * FROM dbo.GamecubeGames";
+            @"SELECT * FROM dbo.GamecubeGames;";
 
         public object? GetParameters() => null;
     

@@ -4,7 +4,6 @@ using Moq;
 using TDD.Api.Controllers;
 using TDD.Application.DTO;
 using TDD.Application.Gamecube.Interfaces;
-using Xunit;
 
 namespace TDD.Tests.ControllerTests
 {

@@ -1,4 +1,4 @@
-TDD BASICS
+﻿TDD BASICS
 
 Real-world industry standard stack:
 
@@ -22,7 +22,7 @@ In real-world TDD, you usually create:
 
 What you do NOT do in TDD
 
-You don�t:
+You don’t:
 
 	-Write the full service
 
@@ -36,20 +36,151 @@ You don�t:
 Realistic TDD workflow
 
 
-Step 1 � Define interface
+Step 1 – Define interface
 
-Step 2 � Write first test
+Step 2 – Write first test
 Test fails (no implementation yet)
 
-Step 3 � Write minimal code
+Step 3 – Write minimal code
 Test passes
 
-Step 4 � Add next test
+Step 4 – Add next test
 Repeat the cycle
 
 
 Ask yourself:
 
-�What is the next behavior I want this code to have?�
+“What is the next behavior I want this code to have?”
 
 Then write a test for that behavior.
+
+
+
+How can I get better at writing unit tests, and make knowing what to do and what syntax to use more intuitive?
+
+
+
+HOW TO GIT GUD:
+
+Getting good at unit tests is mostly two skills that grow together:
+
+1. Designing code that’s easy to test
+
+2. Building “muscle memory” for test patterns + syntax
+
+
+1) Every unit test you write is answering:
+
+	What is the behavior? (the “given/when/then”)
+
+	What are the inputs?
+
+	What are the observable outputs? (return value, state change, exception, interaction)
+
+	What are the edge cases? (null/empty, boundaries, duplicates, invalid)
+
+If you can answer those, the syntax becomes the easy part.
+
+
+2) Use one test “shape” 90% of the time
+
+Make this your default:
+
+	Arrange: build inputs + dependencies
+
+	Act: call the method under test
+
+	Assert: verify one behavior
+
+	Also: one test = one reason to fail.
+
+
+3) Memorize a tiny assertion “vocabulary”
+
+If you use xUnit + FluentAssertions, these cover most needs:
+
+	Equality: result.Should().Be(expected)
+
+	Collections: list.Should().HaveCount(n), list.Should().Contain(x)
+
+	Null: obj.Should().BeNull(), obj.Should().NotBeNull()
+
+	Exceptions: await act.Should().ThrowAsync<SomeException>()
+
+	Strings: str.Should().Contain("abc"), str.Should().MatchRegex(...)
+
+Pick one assertion style and stick to it for a month. Consistency = intuition.
+
+5) Then level up: isolate dependencies (mock, don’t integrate)
+
+When a class calls outside stuff (DB, clock, web API), make the outside thing an interface:
+
+	IGameRepository
+
+	IClock
+
+	IEmailSender
+
+Then unit tests focus on:
+
+	Return value / state
+
+	Did we call the dependency correctly? (interaction)
+
+This is where tests start feeling “obvious”: you’re just verifying a contract.
+
+
+6) A simple workflow to make it automatic
+
+Do this loop repeatedly:
+
+	Write the test description in English
+
+	   “Given X, when Y, then Z”
+
+	Convert each clause into code:
+
+		Given = Arrange
+
+		When = Act
+
+		Then = Assert
+
+	If Arrange feels hard → your production code is too coupled (that’s a design signal)
+
+7) Build intuition with intentional repetition
+
+Pick one small class (like a validator or service) and write:
+
+	3 “happy path” tests
+
+	3 “bad input” tests
+
+	3 “boundary” tests
+
+	3 “interaction” tests (if it calls a dependency)
+
+Do that for 3 different classes. You’ll feel the syntax become automatic.
+
+8) Common “I don’t know what to test” fix
+
+If you’re stuck, write tests for:
+
+	Null / empty / whitespace
+
+	Duplicates
+
+	Min/max boundaries
+
+	Exception messages/types
+
+	Idempotency (calling twice doesn’t break)
+
+	Order (sorting stable or correct)
+
+9) The biggest mindset shift
+
+Unit tests aren’t “testing code.”
+They’re writing down the rules your code must follow.
+
+When you think “rules”, it becomes much clearer what to test.

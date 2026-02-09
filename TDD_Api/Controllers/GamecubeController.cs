@@ -21,8 +21,15 @@ namespace TDD.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GamecubeGame_DTO>>> GetAllGames()
         {
+            string answer = "No games added!";
+
             var games = await _gamecube.GetAllGamesAsync();
+
+            if (games == null || !games.Any())
+                return Ok(answer);
+
             return Ok(games);
         }
+
     }
 }

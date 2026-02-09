@@ -34,7 +34,7 @@ namespace TDD.Tests.ControllerTests
         }
 
         [Fact]
-        public async Task<ActionResult> InsertGame_ShouldReturnOk()
+        public async Task InsertGame_ShouldReturnOk()
         {
             //Arrange
             var expectedGame = "Luigi's Mansion";
@@ -49,7 +49,7 @@ namespace TDD.Tests.ControllerTests
             var result = await controller.InsertGame(expectedGame);
 
             //Assert
-            result.Should().BeOfType<OkObjectResult>();
+            result.Should().BeOfType<OkResult>();
             mockService.Verify(s => s.InsertGameAsync(expectedGame), Times.Once);
         }
     }

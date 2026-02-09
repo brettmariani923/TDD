@@ -1,12 +1,37 @@
+using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using TDD.Api.Controllers;
+using TDD.Application.DTO;
+using TDD.Application.Gamecube.Interfaces;
+using Xunit;
+
 namespace TDD.Tests.ControllerTests
 {
     public class GamecubeTests
     {
         [Fact]
-        public void ReturnAllGamecubeGame()
+        public async Task ReturnAllGamecubeGames_ShouldReturnOk()
         {
+            // Arrange
+            var expectedGames = new List<GamecubeGame_DTO>
+            {
+                new GamecubeGame_DTO { Name = "Metroid Prime" }
+            };
 
- 
+            var mockService = new Mock<IGamecubeService>();
+            mockService.Setup(s => s.GetAllGamesAsync())
+                       .ReturnsAsync(expectedGames);
+
+            var controller = new GamecubeController(mockService.Object);
+
+            // Act
+            var result = await controller.GetAllGames();
+
+            // Assert: status code + service called
+            result.Result.Should().BeOfType<OkObjectResult>();
+            mockService.Verify(s => s.GetAllGamesAsync(), Times.Once);
         }
     }
 }
+

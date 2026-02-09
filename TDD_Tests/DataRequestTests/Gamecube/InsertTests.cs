@@ -1,19 +1,47 @@
-﻿using TDD.Application.Gamecube.Services;
+﻿using System.Threading.Tasks;
+using FluentAssertions;
+using Moq;
+using Xunit;
+using TDD.Application.Gamecube.Services;
+using TDD.Data.Interfaces;
+using TDD.Data.Requests.Gamecube;
 
 namespace TDD.Tests.DataRequestTests.Gamecube
 {
     public class InsertTests
     {
         [Fact]
-        public void AddGame_ShouldStoreGame()
+        public async Task InsertGameAsync_ShouldExecuteInsertRequest_WithCorrectSqlAndParameters()
         {
-            var service = new GamecubeService();
-            service.AddGame("Metroid Prime");
+            // Arrange
+            var data = new Mock<IDataAccess>();
 
-            service.GetAllGames()
-                .Should()
-                .Contain(g => g.Name == "Metroid Prime");
+            // If your ExecuteAsync returns Task or Task<int>, adjust this setup accordingly.
+            data.Setup(d => d.ExecuteAsync(It.IsAny<IDataExecute>()))
+                .Returns(Task.CompletedTask);
+
+            var service = new GamecubeService(data.Object);
+
+            // Act
+            await service.InsertGameAsync("Metroid Prime");
+
+            // Assert
+            data.Verify(d => d.ExecuteAsync(It.Is<IDataExecute>(req =>
+                req.GetSql().Contains("INSERT INTO dbo.GamecubeGames") &&
+                req.GetSql().Contains("VALUES (@Name)") &&
+                HasNameParam(req.GetParameters(), "Metroid Prime")
+            )), Times.Once);
         }
 
+        private static bool HasNameParam(object parameters, string expectedName)
+        {
+            if (parameters is null) return false;
+
+            var prop = parameters.GetType().GetProperty("Name");
+            if (prop is null) return false;
+
+            var value = prop.GetValue(parameters) as string;
+            return value == expectedName;
+        }
     }
 }

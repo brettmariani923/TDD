@@ -1,12 +1,12 @@
-﻿using TDD.Data.Rows;
+﻿using TDD.Application.DTO;
 
 namespace TDD.Application.Gamecube.Interfaces
 {
     public interface IGamecubeService
     {
-        public Task InsertGameAsync(string name);
+        public Task<int> InsertGameAsync(string name);
 
-        public Task<IEnumerable<GamecubeGame_Row>> GetAllGamesAsync();
+        public Task<IEnumerable<GamecubeGame_DTO>> GetAllGamesAsync();
 
     }
 }

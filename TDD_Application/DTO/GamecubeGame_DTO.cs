@@ -1,4 +1,4 @@
-﻿namespace TDD.Api.DTO
+﻿namespace TDD.Application.DTO
 {
     public class GamecubeGame_DTO
     {

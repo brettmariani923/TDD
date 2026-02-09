@@ -1,6 +1,7 @@
 ﻿using TDD.Data.Interfaces;
 using TDD.Data.Requests.Gamecube;
 using TDD.Data.Rows;
+using TDD.Application.DTO;
 using TDD.Application.Gamecube.Interfaces;
 
 namespace TDD.Application.Gamecube.Services
@@ -10,16 +11,21 @@ namespace TDD.Application.Gamecube.Services
         private readonly IDataAccess _data;
         public GamecubeService(IDataAccess data) => _data = data;
 
-        public async Task InsertGameAsync(string name)
+        public async Task<int> InsertGameAsync(string name)
         {
-            await _data.ExecuteAsync(new InsertGameRequest(name));
+            return await _data.ExecuteAsync(new InsertGameRequest(name));
         }
 
-        public async Task<IEnumerable<GamecubeGame_Row>> GetAllGamesAsync()
+        public async Task<IEnumerable<GamecubeGame_DTO>> GetAllGamesAsync()
         {
             var request = new GetAllGamesRequest();
-            var games = await _data.FetchListAsync<GamecubeGame_Row>(request);
-            return games;
+            var rows = await _data.FetchListAsync<GamecubeGame_Row>(request);
+
+            return rows.Select(r => new GamecubeGame_DTO
+            {
+                Name = r.Name
+            });
         }
+
     }
 }

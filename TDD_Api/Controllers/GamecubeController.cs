@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TDD.Api.DTO;
+using TDD.Application.DTO;
 using TDD.Application.Gamecube.Interfaces;
 
 namespace TDD.Api.Controllers

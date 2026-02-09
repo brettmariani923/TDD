@@ -36,7 +36,7 @@ You don’t:
 Realistic TDD workflow
 
 
-Step 1 – Define interface
+Step 1 – Ex: Define interface
 
 Step 2 – Write first test
 Test fails (no implementation yet)

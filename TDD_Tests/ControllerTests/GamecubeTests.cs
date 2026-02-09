@@ -32,6 +32,26 @@ namespace TDD.Tests.ControllerTests
             result.Result.Should().BeOfType<OkObjectResult>();
             mockService.Verify(s => s.GetAllGamesAsync(), Times.Once);
         }
+
+        [Fact]
+        public async Task<ActionResult> InsertGame_ShouldReturnOk()
+        {
+            //Arrange
+            var expectedGame = "Luigi's Mansion";
+
+            var mockService = new Mock<IGamecubeService>();
+            mockService.Setup(s => s.InsertGameAsync(expectedGame))
+                       .Returns(Task.CompletedTask);
+
+            var controller = new GamecubeController(mockService.Object);
+
+            //Act
+            var result = await controller.InsertGame(expectedGame);
+
+            //Assert
+            result.Should().BeOfType<OkObjectResult>();
+            mockService.Verify(s => s.InsertGameAsync(expectedGame), Times.Once);
+        }
     }
 }
 

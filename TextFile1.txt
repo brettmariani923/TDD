@@ -1,0 +1,55 @@
+TDD BASICS
+
+Real-world industry standard stack:
+
+	xUnit
+	FluentAssertions
+	Moq
+
+
+What you DO write before tests
+
+In real-world TDD, you usually create:
+
+	-Project structure
+
+	-Interfaces
+
+	-Empty classes
+
+	-Method signatures
+
+
+What you do NOT do in TDD
+
+You don’t:
+
+	-Write the full service
+
+	-Write the full controller
+
+	-Write the full database logic
+
+	-Then write tests afterward
+
+
+Realistic TDD workflow
+
+
+Step 1 – Define interface
+
+Step 2 – Write first test
+Test fails (no implementation yet)
+
+Step 3 – Write minimal code
+Test passes
+
+Step 4 – Add next test
+Repeat the cycle
+
+
+Ask yourself:
+
+“What is the next behavior I want this code to have?”
+
+Then write a test for that behavior.

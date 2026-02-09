@@ -14,6 +14,9 @@ namespace TDD.Api.Controllers
         [HttpPost]
         public async Task<ActionResult> InsertGame([FromQuery] string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return BadRequest("Name is required");
+
             await _gamecube.InsertGameAsync(name);
             return Ok();
         }

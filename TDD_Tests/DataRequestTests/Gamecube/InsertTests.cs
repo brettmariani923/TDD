@@ -15,7 +15,6 @@ namespace TDD.Tests.DataRequestTests.Gamecube
         {
             // Arrange
             var data = new Mock<IDataAccess>();
-
             var service = new GamecubeService(data.Object);
 
             // Act

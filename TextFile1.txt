@@ -184,3 +184,11 @@ Unit tests aren’t “testing code.”
 They’re writing down the rules your code must follow.
 
 When you think “rules”, it becomes much clearer what to test.
+
+Thoughts
+
+I'm worried this is going to make a granular mess, where im too focused on tests, and when it all comes together its going to be a clunky mess
+
+by that i mean the api is going to be a mess, im sure the code will be fine or better than fine because of it. Seems like shifts the developers focus 
+
+away from the end and puts too much focus on the meanas.

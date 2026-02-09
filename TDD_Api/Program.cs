@@ -9,7 +9,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ✅ Your DI registrations
 builder.Services.AddScoped<IGamecubeService, GamecubeService>();
 builder.Services.AddScoped<IDataAccess, DataAccess>();
 

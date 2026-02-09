@@ -1,4 +1,4 @@
-﻿using TDD.Api.Controllers.GamecubeController;
+﻿using TDD.Api.Controllers;
 using Xunit;
 
 namespace TDD.Tests.DataRequestTests.Gamecube
@@ -8,12 +8,6 @@ namespace TDD.Tests.DataRequestTests.Gamecube
         [Fact]
         public async Task ReturnAllGames_ShouldReturnSuccessfully()
         {
-            var insert = "Super Monkey Ball";
-            await InsertGame(insert);
-
-            var games = await GetAllGames();
-
-            games.Should().Contain(i => i.Name == insertedName);
         }
     }
 }

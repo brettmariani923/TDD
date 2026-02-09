@@ -16,10 +16,6 @@ namespace TDD.Tests.DataRequestTests.Gamecube
             // Arrange
             var data = new Mock<IDataAccess>();
 
-            // If your ExecuteAsync returns Task or Task<int>, adjust this setup accordingly.
-            data.Setup(d => d.ExecuteAsync(It.IsAny<IDataExecute>()))
-                .Returns(Task.CompletedTask);
-
             var service = new GamecubeService(data.Object);
 
             // Act

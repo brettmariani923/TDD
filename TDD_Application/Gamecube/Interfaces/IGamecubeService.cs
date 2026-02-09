@@ -4,7 +4,7 @@ namespace TDD.Application.Gamecube.Interfaces
 {
     public interface IGamecubeService
     {
-        public Task InsertGameAsync(GamecubeGame_Row name);
+        public Task InsertGameAsync(string name);
 
         public Task<IEnumerable<GamecubeGame_Row>> GetAllGamesAsync();
 

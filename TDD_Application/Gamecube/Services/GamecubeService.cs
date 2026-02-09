@@ -10,9 +10,9 @@ namespace TDD.Application.Gamecube.Services
         private readonly IDataAccess _data;
         public GamecubeService(IDataAccess data) => _data = data;
 
-        public async Task InsertGameAsync(GamecubeGame_Row name)
+        public async Task InsertGameAsync(string name)
         {
-            var request = await _data.ExecuteAsync(new InsertGameRequest(name));
+            await _data.ExecuteAsync(new InsertGameRequest(name));
         }
 
         public async Task<IEnumerable<GamecubeGame_Row>> GetAllGamesAsync()

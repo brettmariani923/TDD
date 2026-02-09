@@ -191,4 +191,6 @@ I'm worried this is going to make a granular mess, where im too focused on tests
 
 by that i mean the api is going to be a mess, im sure the code will be fine or better than fine because of it. Seems like shifts the developers focus 
 
-away from the end and puts too much focus on the meanas.
+away from the end and puts too much focus on the means.
+
+Seems like it allocates time poorly in certian cases. It seems like certian behaviors could definitely benefit from TDD style testing, most would be fine to do without it

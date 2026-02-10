@@ -27,5 +27,10 @@ namespace TDD.Application.Gamecube.Services
             });
         }
 
+        public async Task DeleteGameAsync(string name)
+        {
+            await _data.ExecuteAsync(new DeleteGameRequest(name));
+        }
+
     }
 }

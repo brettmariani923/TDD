@@ -34,5 +34,15 @@ namespace TDD.Api.Controllers
             return Ok(games);
         }
 
+        [HttpDelete]
+        public async Task<ActionResult> DeleteGame([FromQuery] string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return BadRequest("Name is required");
+
+            await _gamecube.DeleteGameAsync(name);
+            return Ok();
+        }
+
     }
 }

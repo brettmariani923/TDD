@@ -8,5 +8,7 @@ namespace TDD.Application.Gamecube.Interfaces
 
         public Task<IEnumerable<GamecubeGame_DTO>> GetAllGamesAsync();
 
+        public Task DeleteGameAsync(string name);
+
     }
 }

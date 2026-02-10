@@ -92,6 +92,7 @@ namespace TDD.Tests.ControllerTests
             ok!.Value.Should().Be("No games added!");
         }
 
+        //Delete
         [Fact]
         public async Task DeleteGame_ByName_ShouldReturnOk()
         {
@@ -131,6 +132,7 @@ namespace TDD.Tests.ControllerTests
             mockService.Verify(s => s.DeleteGameAsync(It.IsAny<string>()), Times.Never);
         }
 
+        //Update
         [Fact]
         public async Task UpdateGame_ShouldReturnOk()
         {
@@ -151,6 +153,29 @@ namespace TDD.Tests.ControllerTests
             result.Should().BeOfType<OkResult>();
             mockService.Verify(s => s.UpdateGameAsync(name, updated), Times.Once);
         }
+
+        [Fact]
+        public async Task UpdateGame_IfBlank_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var name = "Super Smash Bros Brawl";
+            var updated = "";
+
+            var mockService = new Mock<IGamecubeService>();
+            var controller = new GamecubeController(mockService.Object);
+
+            // Act
+            var result = await controller.UpdateGame(name, updated);
+
+            // Assert
+            var badRequest = result as BadRequestObjectResult;
+            badRequest.Should().NotBeNull();
+
+            mockService.Verify(
+                s => s.UpdateGameAsync(It.IsAny<string>(), It.IsAny<string>()),
+                Times.Never);
+        }
+
 
 
 

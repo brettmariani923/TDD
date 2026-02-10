@@ -44,5 +44,15 @@ namespace TDD.Api.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public async Task<ActionResult> UpdateGame([FromQuery] string oldName, [FromQuery] string newName)
+        {
+            if (string.IsNullOrEmpty(oldName) || string.IsNullOrEmpty(newName))
+                return BadRequest("Both old and new names are required");
+
+            await _gamecube.UpdateGameAsync(oldName, newName);
+            return Ok();
+        }
+
     }
 }

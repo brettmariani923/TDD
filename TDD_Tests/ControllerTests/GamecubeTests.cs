@@ -131,6 +131,28 @@ namespace TDD.Tests.ControllerTests
             mockService.Verify(s => s.DeleteGameAsync(It.IsAny<string>()), Times.Never);
         }
 
+        [Fact]
+        public async Task UpdateGame_ShouldReturnOk()
+        {
+            // Arrange
+            var name = "Super Smash Bros Brawl";
+            var updated = "Super Smash Bros Melee";
+
+            var mockService = new Mock<IGamecubeService>();
+            mockService.Setup(s => s.UpdateGameAsync(name, updated))
+                       .Returns(Task.CompletedTask);
+
+            var controller = new GamecubeController(mockService.Object);
+
+            // Act
+            var result = await controller.UpdateGame(name, updated);
+
+            // Assert
+            result.Should().BeOfType<OkResult>();
+            mockService.Verify(s => s.UpdateGameAsync(name, updated), Times.Once);
+        }
+
+
 
 
     }

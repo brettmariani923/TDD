@@ -32,5 +32,11 @@ namespace TDD.Application.Gamecube.Services
             await _data.ExecuteAsync(new DeleteGameRequest(name));
         }
 
+        public async Task UpdateGameAsync(string name, string updated)
+        {
+            await _data.ExecuteAsync(new UpdateGameRequest(name, updated));
+        }
+
+
     }
 }

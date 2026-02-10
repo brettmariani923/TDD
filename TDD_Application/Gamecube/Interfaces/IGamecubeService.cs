@@ -10,5 +10,8 @@ namespace TDD.Application.Gamecube.Interfaces
 
         public Task DeleteGameAsync(string name);
 
+        public Task UpdateGameAsync(string name, string updated);
+
+
     }
 }

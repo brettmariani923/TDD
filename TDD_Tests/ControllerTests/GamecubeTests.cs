@@ -9,6 +9,7 @@ namespace TDD.Tests.ControllerTests
 {
     public class GamecubeTests
     {
+        //Create
         [Fact]
         public async Task InsertGame_ShouldReturnOk()
         {
@@ -47,7 +48,7 @@ namespace TDD.Tests.ControllerTests
             mockService.Verify(s => s.InsertGameAsync(It.IsAny<string>()), Times.Never);
         }
 
-
+        //Read
         [Fact]
         public async Task ReturnAllGames_ShouldReturnOk()
         {
@@ -90,6 +91,32 @@ namespace TDD.Tests.ControllerTests
             ok.Should().NotBeNull();
             ok!.Value.Should().Be("No games added!");
         }
+
+        [Fact]
+        public async Task DeleteGame_ByName_ShouldReturnOk()
+        {
+            //Arrange
+            var name = "Animal Crossing";
+
+            var mockService = new Mock<IGamecubeService>();
+            mockService.Setup(s => s.DeleteGameAsync(name))
+                       .Returns(Task.CompletedTask);
+
+            var controller = new GamecubeController(mockService.Object);
+
+            //Act
+            var result = await controller.DeleteGame(name);
+
+            //Assert
+            var ok = result as OkResult;
+            ok.Should().NotBeNull();
+
+            mockService.Verify(s => s.DeleteGameAsync(name), Times.Once);
+        }
+
+
+
+
     }
 }
 

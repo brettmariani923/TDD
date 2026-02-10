@@ -114,6 +114,22 @@ namespace TDD.Tests.ControllerTests
             mockService.Verify(s => s.DeleteGameAsync(name), Times.Once);
         }
 
+        [Fact]
+        public async Task DeleteBlank_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var name = "";
+
+            var mockService = new Mock<IGamecubeService>();
+            var controller = new GamecubeController(mockService.Object);
+
+            // Act
+            var result = await controller.DeleteGame(name);
+
+            // Assert
+            result.Should().BeOfType<BadRequestObjectResult>();
+            mockService.Verify(s => s.DeleteGameAsync(It.IsAny<string>()), Times.Never);
+        }
 
 
 

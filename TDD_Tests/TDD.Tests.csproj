@@ -28,7 +28,6 @@
     <Folder Include="DataRequestTests\N64\" />
     <Folder Include="DataRequestTests\SNES\" />
     <Folder Include="ImplementationTests\" />
-    <Folder Include="ServiceTests\" />
   </ItemGroup>
 
   <ItemGroup>

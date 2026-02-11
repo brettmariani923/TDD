@@ -7,7 +7,7 @@ using TDD.Application.Gamecube.Interfaces;
 
 namespace TDD.Tests.ControllerTests
 {
-    public class GamecubeTests
+    public class GamecubeControllerTests
     {
         //Create
         [Fact]
@@ -68,7 +68,7 @@ namespace TDD.Tests.ControllerTests
             // Act
             var result = await controller.GetAllGames();
 
-            // Assert: status code + service called
+            // Assert
             result.Result.Should().BeOfType<OkObjectResult>();
             mockService.Verify(s => s.GetAllGamesAsync(), Times.Once);
         }

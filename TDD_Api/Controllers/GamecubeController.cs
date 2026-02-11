@@ -11,6 +11,7 @@ namespace TDD.Api.Controllers
         private readonly IGamecubeService _gamecube;
         public GamecubeController(IGamecubeService gamecube) => _gamecube = gamecube;
 
+        //Create
         [HttpPost]
         public async Task<ActionResult> InsertGame([FromQuery] string name)
         {
@@ -20,7 +21,7 @@ namespace TDD.Api.Controllers
             await _gamecube.InsertGameAsync(name);
             return Ok();
         }
-
+        //Read
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GamecubeGame_DTO>>> GetAllGames()
         {
@@ -34,6 +35,18 @@ namespace TDD.Api.Controllers
             return Ok(games);
         }
 
+        //Update
+        [HttpPut]
+        public async Task<ActionResult> UpdateGame([FromQuery] string name, [FromQuery] string updated)
+        {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(updated))
+                return BadRequest("Both old and new names are required");
+
+            await _gamecube.UpdateGameAsync(name, updated);
+            return Ok();
+        }
+
+        //Delete
         [HttpDelete]
         public async Task<ActionResult> DeleteGame([FromQuery] string name)
         {
@@ -41,16 +54,6 @@ namespace TDD.Api.Controllers
                 return BadRequest("Name is required");
 
             await _gamecube.DeleteGameAsync(name);
-            return Ok();
-        }
-
-        [HttpPut]
-        public async Task<ActionResult> UpdateGame([FromQuery] string oldName, [FromQuery] string newName)
-        {
-            if (string.IsNullOrEmpty(oldName) || string.IsNullOrEmpty(newName))
-                return BadRequest("Both old and new names are required");
-
-            await _gamecube.UpdateGameAsync(oldName, newName);
             return Ok();
         }
 
